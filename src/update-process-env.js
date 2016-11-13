@@ -64,7 +64,7 @@ async function getEnvFromShell (env) {
   }
 
   let {stdout, error} = await new Promise((resolve) => {
-    childProcess.execFile(env.SHELL, ['-ilc', 'command env'], {encoding: 'utf8', timeout: 5000}, (error, stdout) => {
+    childProcess.execFile(env.SHELL, ['-lc', 'command env'], {encoding: 'utf8', timeout: 5000}, (error, stdout) => {
       resolve({stdout, error})
     })
   })
@@ -73,7 +73,7 @@ async function getEnvFromShell (env) {
     if (error.handle) {
       error.handle()
     }
-    console.log('warning: ' + env.SHELL + '-ilc "command env" failed with signal (' + error.signal + ')')
+    console.log('warning: ' + env.SHELL + '-lc "command env" failed with signal (' + error.signal + ')')
     console.log(error)
   }
 
